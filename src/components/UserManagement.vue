@@ -5,7 +5,7 @@
         stripe
         border
         style="width: 100%"
-        max-height="350">
+        max-height="368">
       <el-table-column
           prop="id"
           label="ID"
