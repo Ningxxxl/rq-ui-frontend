@@ -17,7 +17,7 @@
       <el-table-column
           prop="phone"
           label="Phone"
-          width="120">
+          width="110">
       </el-table-column>
       <el-table-column
           prop="realName"
@@ -27,11 +27,12 @@
       <el-table-column
           prop="email"
           label="Email"
-          width="140">
+          min-width="140">
       </el-table-column>
       <el-table-column
           prop="role"
-          label="Role">
+          label="Role"
+          min-width="110">
       </el-table-column>
       <el-table-column
           fixed="right"
