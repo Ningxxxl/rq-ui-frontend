@@ -1,17 +1,29 @@
 <template>
+  <!--  <div id="app">-->
+  <!--    <img alt="Vue logo" src="./assets/logo.png">-->
+  <!--    <HelloWorld msg="Welcome to Your Vue.js App"/>-->
+  <!--  </div>-->
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <el-container>
+      <el-header>
+        <h1>Header</h1>
+      </el-header>
+      <el-main>
+        <UserManagement></UserManagement>
+      </el-main>
+    </el-container>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld.vue'
+import UserManagement from "@/components/UserManagement";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    // HelloWorld,
+    UserManagement
   }
 }
 </script>
@@ -21,7 +33,7 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  text-align: left;
   color: #2c3e50;
   margin-top: 60px;
 }
