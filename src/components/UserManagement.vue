@@ -2,6 +2,8 @@
   <div>
     <el-table
         :data="tableData"
+        stripe
+        border
         style="width: 100%"
         max-height="350">
       <el-table-column
@@ -10,7 +12,7 @@
           width="70">
       </el-table-column>
       <el-table-column
-          prop="username"
+          prop="userName"
           label="Username"
           width="120">
       </el-table-column>
@@ -48,10 +50,10 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-dialog title="Details" :visible.sync="dialogFormVisible" center>
-      <el-form :model="edit_form_data">
+    <el-dialog id="detail_dialog" title="Details" :visible.sync="dialogFormVisible" center width="70%">
+      <el-form :model="edit_form_data" size="mini">
         <el-form-item label="Username" :label-width="formLabelWidth">
-          <el-input v-model="edit_form_data.username" autocomplete="off" :disabled="true"></el-input>
+          <el-input v-model="edit_form_data.userName" autocomplete="off" :disabled="true"></el-input>
         </el-form-item>
         <el-form-item label="Real Name" :label-width="formLabelWidth">
           <el-input v-model="edit_form_data.realName" autocomplete="off"></el-input>
@@ -67,8 +69,8 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false" style="width: 90px">Cancel</el-button>
-        <el-button type="primary" @click="dialogFormVisible = false" style="width: 90px">Save</el-button>
+        <el-button @click="dialogFormVisible = false" size="mini" style="width: 90px">Cancel</el-button>
+        <el-button type="primary" @click="submit" size="mini" style="width: 90px">Save</el-button>
       </div>
     </el-dialog>
   </div>
@@ -85,7 +87,6 @@ export default {
       rows.splice(index, 1);
     },
     edit(index, rows) {
-      this.getUserList()
       this.dialogFormVisible = !this.dialogFormVisible
       this.edit_form_data = rows[index]
       console.log(rows[index])
@@ -102,48 +103,64 @@ export default {
         console.log(res.data)
         this.tableData = res.data.items
       })
+    },
+    submit() {
+      this.updateUserProfile()
+      this.dialogFormVisible = false
+    },
+    updateUserProfile() {
+      const data = this.edit_form_data
+      this.$axios({
+        method: "PUT",
+        url: this.$api.updateUserProfile(data.userName),
+        data: data
+      }).then(res => {
+        this.$message.success("SUCCESS")
+        console.log(">>>")
+        console.log(res)
+      }).catch(err => {Promise.resolve(err)})
     }
   },
   data() {
     return {
       tableData: [{
         id: '10001',
-        username: 'user_001',
+        userName: 'user_001',
         phone: '13700101010',
         realName: '王小虎',
         email: 'example@abc.org',
         role: 'ROLE_ADMIN'
       }, {
         id: '10001',
-        username: 'user_001',
+        userName: 'user_001',
         phone: '13700101010',
         realName: '王小虎',
         email: 'example@abc.org',
         role: 'ROLE_ADMIN'
       }, {
         id: '10001',
-        username: 'user_001',
+        userName: 'user_001',
         phone: '13700101010',
         realName: '王小虎',
         email: 'example@abc.org',
         role: 'ROLE_ADMIN'
       }, {
         id: '10001',
-        username: 'user_001',
+        userName: 'user_001',
         phone: '13700101010',
         realName: '王小虎',
         email: 'example@abc.org',
         role: 'ROLE_ADMIN'
       }, {
         id: '10001',
-        username: 'user_001',
+        userName: 'user_001',
         phone: '13700101010',
         realName: '王小虎',
         email: 'example@abc.org',
         role: 'ROLE_ADMIN'
       }, {
         id: '10001',
-        username: 'user_001',
+        userName: 'user_001',
         phone: '13700101010',
         realName: '王小虎',
         email: 'example@abc.org',
@@ -152,7 +169,7 @@ export default {
       dialogFormVisible: false,
       edit_form_data: {
         id: '',
-        username: '',
+        userName: '',
         phone: '',
         realName: '',
         email: '',
@@ -165,5 +182,8 @@ export default {
 </script>
 
 <style scoped>
-
+#detail_dialog >>> .el-dialog__body {
+  padding-top: 10px;
+  padding-bottom: 0;
+}
 </style>

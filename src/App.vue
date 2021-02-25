@@ -3,14 +3,11 @@
   <!--    <img alt="Vue logo" src="./assets/logo.png">-->
   <!--    <HelloWorld msg="Welcome to Your Vue.js App"/>-->
   <!--  </div>-->
-  <div id="app">
+  <div>
     <el-container>
-      <el-header>
-        <h1>Header</h1>
-      </el-header>
-      <el-main>
+<!--      <el-main>-->
         <UserManagement></UserManagement>
-      </el-main>
+<!--      </el-main>-->
     </el-container>
   </div>
 </template>
